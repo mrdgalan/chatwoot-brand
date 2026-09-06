@@ -1,71 +1,149 @@
 /* ============================================================
-   Magna white-label login theme.
-   Colors come from CSS variables injected by the Rails layout
-   (per-install runtime config). Fallbacks here are the Magna
-   defaults and only apply if the variables are missing.
+   MagnaRooms white-label login — "Dark Aurora"
+   Matches the agency brand: near-black canvas, teal #0092ae
+   accent, subtle aurora gradient orbs, dark glass panels.
+   Colors: runtime accent vars (BRAND_COLOR*) feed the teal;
+   the dark canvas + aurora hues are the MagnaRooms signature.
+   Scoped to body.brand-login so only the login page changes.
    ============================================================ */
 
-/* --- Page backdrop --- */
-main[class*="min-h-screen"] {
-  background: linear-gradient(
-    160deg,
-    var(--brand-dark) 0%,
-    var(--brand-primary) 55%,
-    var(--brand-light) 100%
-  ) !important;
+:root {
+  --brand-primary: #0092ae;
+  --brand-dark: #0b6e86;
+  --brand-light: #00c6d7;
 }
 
-/* --- Brand block (logo + title) --- */
-main[class*="min-h-screen"] section[class*="max-w-5xl"] img {
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)) !important;
+/* Brand-independent dark tokens */
+body.brand-login {
+  --mr-bg: #07090c;      /* page canvas */
+  --mr-bg-2: #0f0f12;    /* panel base */
+  --mr-panel: #11151c;   /* glass card */
+  --mr-border: #1e2633;  /* hairlines */
+  --mr-text: #ecebe6;    /* off-white */
+  --mr-muted: #9ba1ad;   /* secondary text */
+  --mr-cyan: #00c6d7;    /* aurora cyan */
+  --mr-violet: #6c5ce7;  /* aurora violet */
+  --mr-blue: #1e63e9;    /* aurora blue */
 }
 
-main[class*="min-h-screen"] section[class*="max-w-5xl"] h2 {
-  color: #ffffff !important;
+/* ============================================================
+   PAGE SHELL
+   ============================================================ */
+body.brand-login main[class*="min-h-screen"] {
+  background-color: var(--mr-bg) !important;
+  background-image:
+    radial-gradient(900px 600px at 70% -10%, rgba(0, 146, 174, 0.10), transparent 60%),
+    radial-gradient(700px 500px at 100% 110%, rgba(30, 99, 233, 0.08), transparent 60%) !important;
+}
+
+/* ============================================================
+   LEFT — brand panel (dark, aurora orbs, faint grid)
+   ============================================================ */
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] {
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: var(--mr-bg-2) !important;
+  background-image:
+    radial-gradient(620px 420px at 12% 18%, rgba(0, 146, 174, 0.34), transparent 62%),
+    radial-gradient(520px 520px at 88% 66%, rgba(0, 198, 215, 0.16), transparent 60%),
+    radial-gradient(760px 560px at 55% -5%, rgba(108, 92, 231, 0.14), transparent 62%) !important;
+  /* faint masked grid (site hero signature) */
+  z-index: 0 !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"]::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px) !important;
+  background-size: 64px 64px !important;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 30% 40%, black 15%, transparent 75%) !important;
+          mask-image: radial-gradient(ellipse 90% 70% at 30% 40%, black 15%, transparent 75%) !important;
+  pointer-events: none !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Logo */
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] img {
+  height: 108px !important;
+  width: auto !important;
+  margin: 0 0 36px 0 !important;
+}
+
+/* Lead title — off-white, tight, weighted (keeps "Login to …" from runtime) */
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] h2 {
+  color: var(--mr-text) !important;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem) !important;
+  line-height: 1.1 !important;
   font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  text-align: left !important;
+  max-width: 18ch !important;
 }
 
-main[class*="min-h-screen"] section[class*="max-w-5xl"] a {
-  color: #e0f4f9 !important;
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] a {
+  color: var(--mr-muted) !important;
+  text-align: left !important;
 }
 
-/* --- Login card --- */
-section[class*="sm:max-w-lg"],
-section[class*="bg-white"] {
-  background: #ffffff !important;
-  border-radius: 18px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
-}
-
-/* --- Labels --- */
-section[class*="sm:max-w-lg"] label {
-  color: #0b2b35 !important;
-  font-weight: 600 !important;
-}
-
-/* --- Inputs --- */
-section[class*="sm:max-w-lg"] input {
-  border: 1px solid #c7d6db !important;
-  border-radius: 10px !important;
-  padding: 0.75rem 1rem !important;
-  background: #ffffff !important;
-  color: #0b2b35 !important;
-}
-
-section[class*="sm:max-w-lg"] input:focus {
-  border-color: var(--brand-primary) !important;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary) 18%, transparent) !important;
-  outline: none !important;
-}
-
-/* --- Forgot password link --- */
-section[class*="sm:max-w-lg"] a {
+body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] a:hover {
   color: var(--brand-primary) !important;
 }
 
-/* --- Primary submit button --- */
-section[class*="sm:max-w-lg"] button[type="submit"] {
-  background-color: var(--brand-primary) !important;
+/* ============================================================
+   RIGHT — dark glass login card
+   ============================================================ */
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"],
+body.brand-login main[class*="min-h-screen"] > section[class*="bg-white"] {
+  background: var(--mr-panel) !important;
+  border: 1px solid var(--mr-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] label {
+  color: var(--mr-muted) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] input {
+  background: var(--mr-bg) !important;
+  border: 1px solid var(--mr-border) !important;
+  border-radius: 10px !important;
+  color: var(--mr-text) !important;
+  padding: 0.8rem 1rem !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] input::placeholder {
+  color: #5b6572 !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] input:focus {
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 3px rgba(0, 146, 174, 0.18) !important;
+  outline: none !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] a {
+  color: var(--mr-muted) !important;
+}
+
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] a:hover {
+  color: var(--brand-primary) !important;
+}
+
+/* Primary button */
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] button[type="submit"] {
+  background: var(--brand-primary) !important;
   border: none !important;
   border-radius: 10px !important;
   color: #ffffff !important;
@@ -73,25 +151,20 @@ section[class*="sm:max-w-lg"] button[type="submit"] {
   transition: background-color 0.15s ease !important;
 }
 
-section[class*="sm:max-w-lg"] button[type="submit"]:hover {
-  background-color: var(--brand-dark) !important;
+body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] button[type="submit"]:hover {
+  background: #00b9d6 !important;
 }
 
 /* ============================================================
-   Two-column branded login (desktop).
-   Left: brand panel (big logo, gradient). Right: the form.
-   Falls back to the stacked Chatwoot layout below 1024px.
+   TWO-COLUMN (desktop). Mobile falls back to stacked.
    ============================================================ */
 @media (min-width: 1024px) {
-  /* Two-column page shell */
   body.brand-login main[class*="min-h-screen"] {
     display: grid !important;
     grid-template-columns: 1.05fr 1fr !important;
     padding: 0 !important;
-    background: #eef4f7 !important;
   }
 
-  /* LEFT: brand panel */
   body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] {
     grid-column: 1 !important;
     grid-row: 1 !important;
@@ -99,56 +172,62 @@ section[class*="sm:max-w-lg"] button[type="submit"]:hover {
     min-height: 100vh !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 64px !important;
+    padding: 72px 64px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: flex-start !important;
     text-align: left !important;
-    background: linear-gradient(
-      160deg,
-      var(--brand-dark) 0%,
-      var(--brand-primary) 60%,
-      var(--brand-light) 100%
-    ) !important;
   }
 
-  /* Bigger logo, aligned left */
-  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] img {
-    height: 96px !important;
-    width: auto !important;
-    margin: 0 0 32px 0 !important;
-    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.2)) !important;
-  }
-
-  /* Title as a lead line on the brand panel */
-  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] h2 {
-    color: #ffffff !important;
-    font-size: 2.4rem !important;
-    line-height: 1.15 !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    max-width: 18ch !important;
-  }
-
-  /* "Create an account" link under the lead */
-  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] a {
-    color: #ffffff !important;
-    opacity: 0.9 !important;
-    text-align: left !important;
-  }
-
-  /* RIGHT: form card */
   body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] {
     grid-column: 2 !important;
     grid-row: 1 !important;
     align-self: center !important;
     justify-self: center !important;
     width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 !important;
+  }
+}
+
+/* ============================================================
+   STACKED (mobile / narrow). Centered brand block then card.
+   ============================================================ */
+@media (max-width: 1023.98px) {
+  body.brand-login main[class*="min-h-screen"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 56px 20px !important;
+  }
+
+  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 0 40px 0 !important;
+    padding: 48px 24px !important;
+    border-radius: 16px !important;
+  }
+
+  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] img {
+    margin: 0 auto 24px auto !important;
+    height: 84px !important;
+  }
+
+  body.brand-login main[class*="min-h-screen"] > section[class*="max-w-5xl"] h2 {
+    text-align: center !important;
+    font-size: 1.7rem !important;
+  }
+
+  body.brand-login main[class*="min-h-screen"] > section[class*="sm:max-w-lg"] {
+    width: 100% !important;
     max-width: 420px !important;
     margin: 0 !important;
-    background: #ffffff !important;
-    border-radius: 18px !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12) !important;
   }
 }
