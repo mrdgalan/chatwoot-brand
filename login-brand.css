@@ -1,19 +1,21 @@
 /* ============================================================
-   Magna Rooms branded login (injected via Rails layout, auth pages only)
-   Tune colors/shapes here, then rebuild the chatwoot-brand image.
+   Magna white-label login theme.
+   Colors come from CSS variables injected by the Rails layout
+   (per-install runtime config). Fallbacks here are the Magna
+   defaults and only apply if the variables are missing.
    ============================================================ */
 
 /* --- Page backdrop --- */
 main[class*="min-h-screen"] {
-  background: linear-gradient(160deg, #0b6e86 0%, #0092ae 55%, #18b7d1 100%) !important;
+  background: linear-gradient(
+    160deg,
+    var(--brand-dark) 0%,
+    var(--brand-primary) 55%,
+    var(--brand-light) 100%
+  ) !important;
 }
 
 /* --- Brand block (logo + title) --- */
-main[class*="min-h-screen"] section[class*="max-w-5xl"] {
-  /* keep centered; pull slightly up for balance */
-  margin-top: 0 !important;
-}
-
 main[class*="min-h-screen"] section[class*="max-w-5xl"] img {
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)) !important;
 }
@@ -51,19 +53,19 @@ section[class*="sm:max-w-lg"] input {
 }
 
 section[class*="sm:max-w-lg"] input:focus {
-  border-color: #0092ae !important;
-  box-shadow: 0 0 0 3px rgba(0, 146, 174, 0.18) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary) 18%, transparent) !important;
   outline: none !important;
 }
 
 /* --- Forgot password link --- */
 section[class*="sm:max-w-lg"] a {
-  color: #0092ae !important;
+  color: var(--brand-primary) !important;
 }
 
 /* --- Primary submit button --- */
 section[class*="sm:max-w-lg"] button[type="submit"] {
-  background-color: #0092ae !important;
+  background-color: var(--brand-primary) !important;
   border: none !important;
   border-radius: 10px !important;
   color: #ffffff !important;
@@ -72,5 +74,5 @@ section[class*="sm:max-w-lg"] button[type="submit"] {
 }
 
 section[class*="sm:max-w-lg"] button[type="submit"]:hover {
-  background-color: #0b6e86 !important;
+  background-color: var(--brand-dark) !important;
 }

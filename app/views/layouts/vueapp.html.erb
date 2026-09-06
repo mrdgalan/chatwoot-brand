@@ -74,6 +74,15 @@
     <%= vite_client_tag %>
     <%= vite_javascript_tag @application_pack %>
     <% if @application_pack == 'v3app' %>
+      <style>
+        /* Magna white-label theme - set per install at runtime:
+           BRAND_COLOR / BRAND_COLOR_DARK / BRAND_COLOR_LIGHT as InstallationConfig. */
+        :root {
+          --brand-primary: <%= GlobalConfig.get_value('BRAND_COLOR').presence || '#0092ae' %>;
+          --brand-dark: <%= GlobalConfig.get_value('BRAND_COLOR_DARK').presence || '#0b6e86' %>;
+          --brand-light: <%= GlobalConfig.get_value('BRAND_COLOR_LIGHT').presence || '#18b7d1' %>;
+        }
+      </style>
       <link rel="stylesheet" href="/login-brand.css">
     <% end %>
   </head>
