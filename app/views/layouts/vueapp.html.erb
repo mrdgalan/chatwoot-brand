@@ -86,7 +86,7 @@
       <link rel="stylesheet" href="/login-brand.css">
     <% end %>
   </head>
-  <body class="text-slate-600">
+  <body class="text-slate-600 <%= @application_pack == 'v3app' && request.path.include?('login') ? 'brand-login' : '' %>">
     <div id="app"></div>
     <noscript id="noscript">This app works best with JavaScript enabled.</noscript>
     <%= yield %>
