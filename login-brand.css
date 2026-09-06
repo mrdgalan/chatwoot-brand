@@ -1,0 +1,76 @@
+/* ============================================================
+   Magna Rooms branded login (injected via Rails layout, auth pages only)
+   Tune colors/shapes here, then rebuild the chatwoot-brand image.
+   ============================================================ */
+
+/* --- Page backdrop --- */
+main[class*="min-h-screen"] {
+  background: linear-gradient(160deg, #0b6e86 0%, #0092ae 55%, #18b7d1 100%) !important;
+}
+
+/* --- Brand block (logo + title) --- */
+main[class*="min-h-screen"] section[class*="max-w-5xl"] {
+  /* keep centered; pull slightly up for balance */
+  margin-top: 0 !important;
+}
+
+main[class*="min-h-screen"] section[class*="max-w-5xl"] img {
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.18)) !important;
+}
+
+main[class*="min-h-screen"] section[class*="max-w-5xl"] h2 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+main[class*="min-h-screen"] section[class*="max-w-5xl"] a {
+  color: #e0f4f9 !important;
+}
+
+/* --- Login card --- */
+section[class*="sm:max-w-lg"],
+section[class*="bg-white"] {
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* --- Labels --- */
+section[class*="sm:max-w-lg"] label {
+  color: #0b2b35 !important;
+  font-weight: 600 !important;
+}
+
+/* --- Inputs --- */
+section[class*="sm:max-w-lg"] input {
+  border: 1px solid #c7d6db !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  background: #ffffff !important;
+  color: #0b2b35 !important;
+}
+
+section[class*="sm:max-w-lg"] input:focus {
+  border-color: #0092ae !important;
+  box-shadow: 0 0 0 3px rgba(0, 146, 174, 0.18) !important;
+  outline: none !important;
+}
+
+/* --- Forgot password link --- */
+section[class*="sm:max-w-lg"] a {
+  color: #0092ae !important;
+}
+
+/* --- Primary submit button --- */
+section[class*="sm:max-w-lg"] button[type="submit"] {
+  background-color: #0092ae !important;
+  border: none !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+section[class*="sm:max-w-lg"] button[type="submit"]:hover {
+  background-color: #0b6e86 !important;
+}
