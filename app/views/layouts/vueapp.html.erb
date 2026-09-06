@@ -83,7 +83,7 @@
           --brand-light: <%= GlobalConfig.get_value('BRAND_COLOR_LIGHT').presence || '#18b7d1' %>;
         }
       </style>
-      <link rel="stylesheet" href="/login-brand.css">
+      <link rel="stylesheet" href="/login-brand.css?v=3">
     <% end %>
   </head>
   <body class="text-slate-600 <%= @application_pack == 'v3app' && request.path.include?('login') ? 'brand-login' : '' %>">
